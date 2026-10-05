@@ -1,0 +1,21 @@
+SURFix3D Pre-built Binaries License
+
+Copyright (c) 2026 <Nguyen Binh Thuan>. All rights reserved.
+
+This license covers the binaries, import libraries, headers and CMake package
+files in prebuilt/ (core, io, render, ui).
+
+1. You may use the binaries free of charge, for personal and commercial
+   purposes, and link them with your own software.
+2. You may redistribute the binaries only unmodified and together with this
+   license file.
+3. You may not reverse engineer, decompile or disassemble the binaries,
+   except where applicable law expressly permits it.
+4. You may not sell the binaries on their own.
+
+THE BINARIES ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. IN NO EVENT
+SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING
+FROM THE USE OF THE BINARIES.
+
+Third-party components bundled in these binaries are listed in
+THIRD_PARTY_NOTICES.md and remain under their own licenses.

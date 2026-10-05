@@ -1,0 +1,4 @@
+// surfix3d.rc — Windows resource script
+// Đặt file này cùng dự án, và để surfix3d-app.ico cạnh nó (hoặc sửa lại đường dẫn).
+// ID nhỏ nhất sẽ được Explorer/taskbar dùng làm icon của .exe.
+IDI_APPICON ICON "surfix3d-app.ico"
