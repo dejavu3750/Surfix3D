@@ -5,8 +5,8 @@
 
 The car model shown in the demo:
 
-- **Model:** [Free_1975_porsche_911_930_turbo](<<< LINK TRANG MODEL >>>)
-- **Author:** [rar.z](<<< LINK TRANG TÁC GIẢ >>>)
+- **Model:** [Free_1975_porsche_911_930_turbo](https://sketchfab.com/3d-models/free-1975-porsche-911-930-turbo-cc56531bdab148b5b646e46c7006dc97)
+- **Author:** [rar.z]
 - **License:** [CC Attribution - Creative Commons Attribution](https://creativecommons.org/licenses/by/4.0/)
   > Author must be credited. Commercial use is allowed.
 
