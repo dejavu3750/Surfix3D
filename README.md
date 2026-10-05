@@ -1,5 +1,3 @@
-> **Note - generated file.** Copied from `publish/README.md` in the private repo by the `publish` script. Edit it there and re-run publish; changes made directly in `SURFix3DPublic/` are overwritten.
-
 ## Demo
 <img width="1613" height="1071" alt="Image" src="https://github.com/user-attachments/assets/27843c42-ff0a-4d48-9cb2-4a06131389bb" />
 
