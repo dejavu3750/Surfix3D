@@ -1,4 +1,21 @@
+<<<<<<< HEAD
 > **Note - generated file.** Copied from `publish/README.md` in the private repo by the `publish` script. Edit it there and re-run publish; changes made directly in `SURFix3DPublic/` are overwritten.
+=======
+## Demo
+<img width="1613" height="1071" alt="Image" src="https://github.com/user-attachments/assets/27843c42-ff0a-4d48-9cb2-4a06131389bb" />
+
+### Credits
+
+The car model shown in the demo:
+
+- **Model:** [Free_1975_porsche_911_930_turbo](https://sketchfab.com/3d-models/free-1975-porsche-911-930-turbo-cc56531bdab148b5b646e46c7006dc97)
+- **Author:** [rar.z]
+- **License:** [CC Attribution - Creative Commons Attribution](https://creativecommons.org/licenses/by/4.0/)
+  > Author must be credited. Commercial use is allowed.
+
+The model is used unmodified, for demonstration purposes only. It is **not**
+distributed with this repository.
+>>>>>>> 1b42395a9f9bd68127fa65280f71982518a024b4
 
 # SURFix3D (Public Distribution) 🚀
 
@@ -95,4 +112,14 @@ private repo:
 
 1. `scripts\windows\package.bat` builds and strips the engine and UI, then writes them to `dist\`.
 2. `scripts\windows\publish.bat` copies `editor/`, `assets/`, `scripts/` and `dist\` (as `prebuilt/`) into this repository.
+<<<<<<< HEAD
 3. Commit and push here.
+=======
+3. Commit and push here.
+
+## License
+
+- Source in this repository (`editor/`, `scripts/`, build files): **MIT** - see [LICENSE](LICENSE).
+- Pre-built engine and UI (`prebuilt/`): **free to use, proprietary** - see [prebuilt/LICENSE.txt](prebuilt/LICENSE.txt).
+- Third-party components: see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+>>>>>>> 1b42395a9f9bd68127fa65280f71982518a024b4
