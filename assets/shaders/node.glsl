@@ -4,11 +4,13 @@ layout(location = 0) in vec3 aPos;
 layout(location = 1) in uint aNode;
 uniform mat4 uMVP;
 uniform float uSize;
+uniform vec4  uClipPlane;
 flat out uint vNode;
 void main() {
     vNode = aNode;
     gl_Position  = uMVP * vec4(aPos, 1.0);
     gl_PointSize = uSize;
+    gl_ClipDistance[0] = dot(vec4(aPos, 1.0), uClipPlane); // clip
 }
 
 #type fragment

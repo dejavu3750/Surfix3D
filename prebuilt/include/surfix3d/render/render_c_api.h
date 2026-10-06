@@ -157,6 +157,32 @@ RENDER_API sfx_render_status_t sfx_renderer_set_show_textures(sfx_renderer_t r, 
 
 RENDER_API const char* sfx_render_status_string(sfx_render_status_t status);
 
+/* ---- Section view ---- */
+/* Sync surface pick: world xyz of the nearest visible face under (x,y). out_hit  = 0 on miss. */
+RENDER_API sfx_render_status_t sfx_renderer_pick_surface(sfx_renderer_t r, int x, int y, float out_xyz[3], int* out_hit);
+/* Section plane: dot(normal, p) = d. Normal need not be unit (normalized internally). */
+RENDER_API sfx_render_status_t sfx_renderer_set_section_plane(sfx_renderer_t r, const float normal[3], float d);
+RENDER_API sfx_render_status_t sfx_renderer_clear_section_plane(sfx_renderer_t r);
+/* Number of plane/mesh intersection segments of the current section. */
+RENDER_API sfx_render_status_t sfx_renderer_section_segment_count(sfx_renderer_t r, uint32_t* out_count);
+/* One-sided section: hide geometry on the +normal side of the section plane (GPU clip). */
+RENDER_API sfx_render_status_t sfx_renderer_set_section_one_sided(sfx_renderer_t r, int one_sided);
+/* Section drag handle (flat arrow at the plane center, along the plane normal). */
+RENDER_API sfx_render_status_t sfx_renderer_section_arrow(sfx_renderer_t r, float base[3], float tip[3], int* out_valid);
+RENDER_API sfx_render_status_t sfx_renderer_set_section_arrow_hot(sfx_renderer_t r, int hot);
+/* World -> window pixel (top-left origin). out_visible = 0 if behind / invalid */
+RENDER_API sfx_render_status_t sfx_renderer_world_to_screen(sfx_renderer_t r, const float xyz[3], float out_xy[2], int* out_visible);
+/* Fill the cut with a solid cap (one-sided section only; needs closed meshes + stencil buffer).
+   rgb may be NULL to keep the current color. */
+RENDER_API sfx_render_status_t sfx_renderer_set_section_cap(sfx_renderer_t r, int on, const float rgb[3]);
+
+/* Isolate: hide every face, element that is not selected
+	out_done = 1 if anything was isolated. Undo with sfx_renderer_unisolate(). */
+RENDER_API sfx_render_status_t sfx_renderer_isolate_selection(sfx_renderer_t r, int* out_done);
+/* Re-show only what the last isolate(s) hid.*/
+RENDER_API sfx_render_status_t sfx_renderer_unisolate(sfx_renderer_t r);
+
+
 #ifdef __cplusplus
 }
 #endif

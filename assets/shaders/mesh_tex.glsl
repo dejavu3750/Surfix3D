@@ -6,6 +6,7 @@ layout(location = 2) in uint aFace;
 layout(location = 3) in uint aElem;
 layout(location = 7) in vec2 aUV;
 uniform mat4 uMVP;
+uniform vec4 uClipPlane; // xyz = n, w = -d; keep dot(vec4(p,1), uClipPlane) >= 0. (0,0,0,1) = no clip
 out vec3 vNrm;
 out vec2 vUV;
 flat out uint vFace;
@@ -13,6 +14,7 @@ flat out uint vElem;
 void main() {
     vNrm = aNrm; vUV = aUV; vFace = aFace; vElem = aElem;
     gl_Position = uMVP * vec4(aPos, 1.0);
+	gl_ClipDistance[0] = dot(vec4(aPos, 1.0), uClipPlane);
 }
 
 #type fragment

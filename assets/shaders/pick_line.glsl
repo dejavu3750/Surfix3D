@@ -6,6 +6,7 @@ layout(location = 2) in uint aFace;
 layout(location = 3) in uint aH0;
 layout(location = 4) in uint aH1;
 uniform mat4 uMVP;
+uniform vec4 uClipPlane; // xyz = -n, w = d; (0,0,0,1) = no clip
 flat out uint vPrim;
 flat out uint vFace;
 flat out uint vH0;
@@ -13,6 +14,7 @@ flat out uint vH1;
 void main() {
     vPrim = aPrim; vFace = aFace; vH0 = aH0; vH1 = aH1;
     gl_Position = uMVP * vec4(aPos, 1.0);
+    gl_ClipDistance[0] = dot(vec4(aPos, 1.0), uClipPlane);
 }
 
 #type fragment

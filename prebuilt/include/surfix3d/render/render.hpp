@@ -171,6 +171,53 @@ public:
         return hit;
     }
 
+    ///////////////////////////////
+    // --- section view ---     ///
+    ///////////////////////////////
+    bool pickSurface(int x, int y, float out[3]) {
+        int hit = 0;
+        check(sfx_renderer_pick_surface(handle_.get(), x, y, out, &hit));
+		return hit != 0;
+    }
+    void setSectionPlane(const float n[3], float d) {
+        check(sfx_renderer_set_section_plane(handle_.get(), n, d));
+	}
+    void clearSectionPlane() {
+        check(sfx_renderer_clear_section_plane(handle_.get()));
+	}
+    uint32_t sectionSegmentCount() {
+        uint32_t n = 0;
+		check(sfx_renderer_section_segment_count(handle_.get(), &n));
+        return n;
+    }
+    void setSectionOneSided(bool on) {
+        check(sfx_renderer_set_section_one_sided(handle_.get(), on ? 1 : 0));
+    }
+    bool sectionArrow(float base[3], float tip[3]) {
+        int ok = 0;
+        check(sfx_renderer_section_arrow(handle_.get(), base, tip, &ok));
+        return ok != 0;
+    }
+    void setSectionArrowHot(bool hot) {
+        check(sfx_renderer_set_section_arrow_hot(handle_.get(), hot ? 1 : 0));
+    }
+    bool worldToScreen(const float xyz[3], float out_xy[2]) {
+        int vis = 0;
+        check(sfx_renderer_world_to_screen(handle_.get(), xyz, out_xy, &vis));
+        return vis != 0;
+    }
+    void setSectionCap(bool on, const float* rgb = nullptr) {
+        check(sfx_renderer_set_section_cap(handle_.get(), on ? 1 : 0, rgb));
+    }
+    bool isolateSelection() {
+        int done = 0;
+		check(sfx_renderer_isolate_selection(handle_.get(), &done));
+		return done != 0;
+    }
+    void unisolate() {
+        check(sfx_renderer_unisolate(handle_.get()));
+	}
+
 
 private:
     std::unique_ptr<sfx_renderer, decltype(&sfx_renderer_destroy)> handle_;
