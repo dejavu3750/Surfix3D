@@ -217,7 +217,12 @@ public:
     void unisolate() {
         check(sfx_renderer_unisolate(handle_.get()));
 	}
-
+    void setCloudVisible(uint32_t id, bool v) { 
+        check(sfx_renderer_set_cloud_visible(handle_.get(), id, v ? 1 : 0));
+    }
+    void setCloudPointSize(float px) {
+        check(sfx_renderer_set_cloud_point_size(handle_.get(), px)); 
+    }
 
 private:
     std::unique_ptr<sfx_renderer, decltype(&sfx_renderer_destroy)> handle_;

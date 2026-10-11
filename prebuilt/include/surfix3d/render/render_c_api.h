@@ -114,6 +114,9 @@ RENDER_API sfx_render_status_t sfx_renderer_mouse_button(sfx_renderer_t renderer
 RENDER_API sfx_render_status_t sfx_renderer_mouse_move(sfx_renderer_t renderer, double x, double y);
 RENDER_API sfx_render_status_t sfx_renderer_mouse_scroll(sfx_renderer_t renderer, int up);
 RENDER_API sfx_render_status_t sfx_renderer_frame_view(sfx_renderer_t renderer);
+RENDER_API sfx_render_status_t sfx_renderer_set_cloud_visible(sfx_renderer_t r, uint32_t cloud_id, int visible);
+RENDER_API sfx_render_status_t sfx_renderer_set_cloud_point_size(sfx_renderer_t r, float px);
+
 /* Snap the camera to a top (XY) view: look straight down the -Z axis, +Y up.
    `dist` is the eye distance above the XY plane; pass <= 0 to keep the current
    distance. Orientation + distance only; does not refit to a model. Works with

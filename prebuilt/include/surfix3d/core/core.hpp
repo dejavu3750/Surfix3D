@@ -38,9 +38,27 @@ public:
         if (!handle_) throw std::bad_alloc();
     }
 
+    struct PointCloudInfo {
+        std::string name;
+        uint32_t points{ 0 };
+		bool hasNormals{ false }, hasColors{ false };
+	};
+
     // Take ownership of a handle produced by another engine module (e.g. io).
     static DocumentHandle adopt(sfx_document_t handle) { return DocumentHandle(handle); }
 
+    uint32_t pointCloudCount() const {
+        uint32_t c = 0; 
+        check(sfx_document_point_cloud_count(handle_.get(), &c)); return c;
+	}
+
+    PointCloudInfo pointCloudInfo(uint32_t index) const {
+        sfx_point_cloud_info_t raw{};
+		char buf[256] = {};
+        check(sfx_document_point_cloud_info(handle_.get(), index, &raw, buf, sizeof(buf)));
+		return PointCloudInfo{ std::string(buf), raw.point_count, raw.has_normals != 0, raw.has_colors != 0 };
+	}
+    
     uint32_t nodeCount() const {
         uint32_t c = 0; check(sfx_document_node_count(handle_.get(), &c)); return c;
     }

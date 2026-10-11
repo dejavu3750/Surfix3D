@@ -29,6 +29,17 @@ typedef enum sfx_io_format {
 	SFX_FMT_GLTF,          /* glTF 2.0 (.glb binary / .gltf JSON) */
 } sfx_io_format_t;
 
+typedef struct sfx_ply_options_t {
+    int normals; // 1 = import normals.
+    int colors;  // 1 = import RGB. 
+    int faces;   // 0 = point cloud only.
+} sfx_ply_options_t;
+
+typedef struct sfx_ply_probe_t {
+    uint64_t vertices, faces;
+    int has_normals, has_colors;
+} sfx_ply_probe_t;
+
 /* Guess the format from a path's extension. */
 IO_API sfx_io_format_t sfx_io_detect_format(const char* path);
 
@@ -54,6 +65,9 @@ IO_API sfx_io_status_t sfx_io_import_progress(const char* path,
 IO_API sfx_io_status_t sfx_io_import_into_progress(const char* path,
     sfx_document_t doc,
     sfx_progress_cb cb, void* user);
+
+IO_API sfx_io_status_t sfx_io_ply_probe(const char* path, sfx_ply_probe_t* out);
+IO_API void sfx_io_set_ply_options(const sfx_ply_options_t* opts);
 
 /* Export `doc` to `path`, choosing the writer from the extension. */
 IO_API sfx_io_status_t sfx_io_export(const char* path,

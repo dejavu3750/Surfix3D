@@ -111,6 +111,20 @@ typedef struct sfx_face_material_batch {
     uint32_t vertex_count; // number of vertices in this run
 } sfx_face_material_batch_t;
 
+/* ---- Point clouds ---- */
+/* A run of points belonging to one PointCloud (index into the document's cloud list). */
+typedef struct sfx_cloud_batch {
+    uint32_t cloud_id; 
+    uint32_t first_point;
+    uint32_t point_count;
+} sfx_cloud_batch_t;
+
+typedef struct sfx_point_cloud_info {
+    uint32_t point_count;
+    int has_normals;
+    int has_colors;
+} sfx_point_cloud_info_t;
+
 /* Shading mode for tessellated faces.
    FLAT   = one normal per triangle (faceted look).
    SMOOTH = per-vertex normal, averaged within each BrepFace/MeshPatch so that
@@ -179,6 +193,10 @@ CORE_API const char* sfx_render_data_material_texture(sfx_render_data_t rd, uint
 /* Material-grouped draw runs (parallel semantics to sfx_render_data_face_batches)*/
 CORE_API const sfx_face_material_batch_t* sfx_render_data_face_material_batches(sfx_render_data_t rd, uint32_t* out_count);
 
+/* Points: 6 floats/point = pos.xyz + rgb (linear 0..1). rgb.r < 0 -> no color (use default). */
+CORE_API const float* sfx_render_data_cloud_points(sfx_render_data_t rd, uint32_t* out_point_count);
+CORE_API const sfx_cloud_batch_t* sfx_render_data_cloud_batches(sfx_render_data_t rd, uint32_t* out_count);
+
 
 // Commands
 CORE_API sfx_status_t sfx_document_delete_faces(sfx_document_t doc, 
@@ -198,6 +216,10 @@ CORE_API size_t sfx_document_redo_count(const sfx_document_t doc);
 CORE_API const char* sfx_document_undo_label(const sfx_document_t doc, size_t index);
 CORE_API const char* sfx_document_redo_label(const sfx_document_t doc, size_t index);
 
+CORE_API sfx_status_t sfx_document_point_cloud_count(sfx_document_t doc, uint32_t* out_count);
+/* out_name may be NULL. */
+CORE_API sfx_status_t sfx_document_point_cloud_info(sfx_document_t doc, uint32_t index, 
+	sfx_point_cloud_info_t* out_info, char* out_name, size_t name_size);
 
 
 #ifdef __cplusplus
